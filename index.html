@@ -6,12 +6,12 @@
     <title>Modaniels | Futuristic Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Flowbite CDN (for UI components) -->
+    <!-- Flowbite CDN -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
       rel="stylesheet"
     />
-    <!-- Google Fonts (Orbitron + Inter) -->
+    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap"
       rel="stylesheet"
@@ -29,26 +29,44 @@
       .logo {
         font-family: "Orbitron", sans-serif;
       }
-      .hero-content {
-        animation: slideIn 1s ease-out;
+      /* NEW: Typing animation for hero */
+      .hero-title {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 1.5s steps(20, end);
       }
-      @keyframes slideIn {
+      .hero-subtitle {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 1.8s steps(25, end) 0.5s forwards;
+        opacity: 0;
+      }
+      .hero-tagline {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(30, end) 1s forwards;
+        opacity: 0;
+      }
+      @keyframes typing {
         from {
-          transform: translateX(-50px);
+          width: 0;
           opacity: 0;
         }
         to {
-          transform: translateX(0);
+          width: 100%;
           opacity: 1;
         }
       }
+      /* NEW: Card hover glow */
       .skill-card:hover,
       .project-card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(6, 123, 81, 0.3);
         transition: all 0.3s ease;
       }
-      .nav-link:hover {
-        color: #067b51;
+      .skill-card:hover .skill-icon {
+        background-color: #089b68;
+        transition: all 0.3s ease;
       }
     </style>
   </head>
@@ -60,15 +78,19 @@
       >
         <div class="logo text-2xl font-bold">Modaniels</div>
         <div class="hidden md:flex space-x-8">
-          <a href="#about" class="nav-link hover:text-emerald-600">About Me</a>
-          <a href="#skills" class="nav-link hover:text-emerald-600">Skills</a>
-          <a href="#projects" class="nav-link hover:text-emerald-600"
+          <a href="#about" class="hover:text-[#067B51] transition">About Me</a>
+          <a href="#skills" class="hover:text-[#067B51] transition">Skills</a>
+          <a href="#projects" class="hover:text-[#067B51] transition"
             >Projects</a
           >
-          <a href="#contact" class="nav-link hover:text-emerald-600">Contact</a>
+          <a href="#contact" class="hover:text-[#067B51] transition">Contact</a>
         </div>
-        <!-- Mobile Menu Button (Flowbite) -->
-        <button id="mobile-menu-button" class="md:hidden">
+        <!-- NEW: Fixed Flowbite mobile menu -->
+        <button
+          data-collapse-toggle="mobile-menu"
+          type="button"
+          class="md:hidden"
+        >
           <svg
             class="w-6 h-6"
             fill="none"
@@ -84,19 +106,19 @@
           </svg>
         </button>
       </nav>
-      <!-- Mobile Menu (Flowbite) -->
+      <!-- Mobile Menu -->
       <div id="mobile-menu" class="hidden md:hidden bg-[#2A2A2A]">
         <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href="#about" class="block px-3 py-2 hover:text-emerald-600"
+          <a href="#about" class="block px-3 py-2 hover:text-[#067B51]"
             >About Me</a
           >
-          <a href="#skills" class="block px-3 py-2 hover:text-emerald-600"
+          <a href="#skills" class="block px-3 py-2 hover:text-[#067B51]"
             >Skills</a
           >
-          <a href="#projects" class="block px-3 py-2 hover:text-emerald-600"
+          <a href="#projects" class="block px-3 py-2 hover:text-[#067B51]"
             >Projects</a
           >
-          <a href="#contact" class="block px-3 py-2 hover:text-emerald-600"
+          <a href="#contact" class="block px-3 py-2 hover:text-[#067B51]"
             >Contact</a
           >
         </div>
@@ -109,11 +131,13 @@
         class="container mx-auto px-6 flex flex-col md:flex-row items-center"
       >
         <div class="hero-content md:w-1/2 mb-10 md:mb-0">
-          <h1 class="text-5xl md:text-6xl font-bold mb-4">Modaniels</h1>
-          <p class="text-[#B0B0B0] text-xl mb-6">
+          <h1 class="hero-title text-5xl md:text-6xl font-bold mb-4">
+            Modaniels
+          </h1>
+          <p class="hero-subtitle text-[#B0B0B0] text-xl mb-6">
             AI Developer | Futuristic Designer
           </p>
-          <p class="text-2xl mb-8">
+          <p class="hero-tagline text-2xl mb-8">
             Building the future, one line of code at a time.
           </p>
           <a
@@ -140,7 +164,7 @@
           <!-- Skill Card 1 -->
           <div class="skill-card bg-[#2A2A2A] p-6 rounded-lg shadow-lg">
             <div
-              class="w-12 h-12 bg-[#067B51] rounded-full flex items-center justify-center mb-4"
+              class="skill-icon w-12 h-12 bg-[#067B51] rounded-full flex items-center justify-center mb-4"
             >
               <svg
                 class="w-6 h-6 text-white"
@@ -167,7 +191,7 @@
           <!-- Skill Card 2 -->
           <div class="skill-card bg-[#2A2A2A] p-6 rounded-lg shadow-lg">
             <div
-              class="w-12 h-12 bg-[#067B51] rounded-full flex items-center justify-center mb-4"
+              class="skill-icon w-12 h-12 bg-[#067B51] rounded-full flex items-center justify-center mb-4"
             >
               <svg
                 class="w-6 h-6 text-white"
@@ -185,33 +209,6 @@
             </div>
             <h3 class="text-xl font-bold mb-2">JavaScript</h3>
             <p class="text-[#B0B0B0] mb-4">Web Development & APIs</p>
-            <a
-              href="#"
-              class="text-[#067B51] hover:text-[#089B68] flex items-center"
-              >Learn More →</a
-            >
-          </div>
-          <!-- Skill Card 3 -->
-          <div class="skill-card bg-[#2A2A2A] p-6 rounded-lg shadow-lg">
-            <div
-              class="w-12 h-12 bg-[#067B51] rounded-full flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold mb-2">AI/ML</h3>
-            <p class="text-[#B0B0B0] mb-4">Neural Networks & NLP</p>
             <a
               href="#"
               class="text-[#067B51] hover:text-[#089B68] flex items-center"
@@ -247,35 +244,6 @@
                 >
                 <span class="bg-[#067B51] text-white px-2 py-1 rounded text-sm"
                   >NLP</span
-                >
-              </div>
-              <a
-                href="#"
-                class="text-[#067B51] hover:text-[#089B68] flex items-center"
-                >GitHub →</a
-              >
-            </div>
-          </div>
-          <!-- Project Card 2 -->
-          <div
-            class="project-card bg-[#2A2A2A] rounded-lg overflow-hidden shadow-lg"
-          >
-            <img
-              src="https://placehold.co/600x400/2A2A2A/FFFFFF?text=Portfolio+Website"
-              alt="Portfolio Website"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">Portfolio Website</h3>
-              <p class="text-[#B0B0B0] mb-4">
-                A responsive portfolio with dark mode.
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-[#067B51] text-white px-2 py-1 rounded text-sm"
-                  >HTML/CSS</span
-                >
-                <span class="bg-[#067B51] text-white px-2 py-1 rounded text-sm"
-                  >JavaScript</span
                 >
               </div>
               <a
@@ -353,17 +321,32 @@
       </div>
     </footer>
 
-    <!-- Flowbite JS (for mobile menu) -->
+    <!-- Flowbite JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <!-- Custom JS -->
     <script>
-      // Smooth scrolling for anchor links
+      // NEW: Mobile menu toggle fix
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.querySelector(
+          '[data-collapse-toggle="mobile-menu"]'
+        );
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+      });
+
+      // Smooth scrolling
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
           document.querySelector(this.getAttribute("href")).scrollIntoView({
             behavior: "smooth",
           });
+          // Close mobile menu after click
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.add("hidden");
         });
       });
     </script>
