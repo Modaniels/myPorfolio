@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modaniels | Futuristic Portfolio</title>
+    <title>Modaniels | FC24-Inspired Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -15,6 +15,7 @@
               "fc-gray": "#1a1a1a",
               "fc-green": "#00ff87",
               "fc-light": "#e8e8e8",
+              "fc-accent": "#00a1ff",
             },
             fontFamily: {
               orbitron: ["Orbitron", "sans-serif"],
@@ -50,7 +51,32 @@
         font-weight: 700;
       }
 
-      /* FC24-inspired gradient elements */
+      /* Floating particles background */
+      .particles-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        background-color: rgba(0, 255, 135, 0.15);
+        border-radius: 2px;
+        animation: float linear infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+        }
+      }
+
+      /* FC24-style gradient borders */
       .fc-gradient-border {
         position: relative;
         z-index: 1;
@@ -110,6 +136,12 @@
         transition: all 0.3s ease;
       }
 
+      /* Content wrapper to bring elements above particles */
+      .content-wrapper {
+        position: relative;
+        z-index: 10;
+      }
+
       /* Mobile responsiveness */
       @media (max-width: 768px) {
         .hero {
@@ -134,10 +166,13 @@
     </style>
   </head>
   <body class="bg-fc-dark text-fc-light">
+    <!-- Floating particles background -->
+    <div class="particles-container" id="particles-container"></div>
+
     <!-- Navigation Bar -->
     <header class="fixed w-full bg-fc-dark/90 backdrop-blur-sm z-50 shadow-lg">
       <nav
-        class="container mx-auto px-4 py-3 flex justify-between items-center"
+        class="container mx-auto px-4 py-3 flex justify-between items-center content-wrapper"
       >
         <div class="logo text-xl md:text-2xl font-bold text-fc-green">
           Modaniels
@@ -179,6 +214,8 @@
           <a href="#projects" class="block px-3 py-2 hover:text-fc-green"
             >Projects</a
           >
+          <a href="#" class="block px-3 py-2 hover:text-fc-green">Resume</a>
+
           <a href="#contact" class="block px-3 py-2 hover:text-fc-green"
             >Contact</a
           >
@@ -189,23 +226,23 @@
     <!-- Hero Section -->
     <section class="hero min-h-screen flex items-center pt-16">
       <div
-        class="container mx-auto px-4 flex flex-col md:flex-row items-center"
+        class="container mx-auto px-4 flex flex-col md:flex-row items-center content-wrapper"
       >
         <div class="hero-content md:w-1/2 mb-8 md:mb-0">
           <h1
             class="hero-title text-4xl md:text-6xl font-bold mb-4 text-fc-green"
           >
-            Modaniels
+            Hello, I'm junior
           </h1>
           <p class="hero-subtitle text-fc-green text-lg md:text-xl mb-4">
-            AI Developer | Futuristic Designer
+            C++ engineer || Python developer
           </p>
           <p class="hero-tagline text-xl md:text-2xl mb-6">
-            Building the future, one line of code at a time.
+            'T' tech enthusiast with passion in AI and Automation.
           </p>
           <a
             href="#contact"
-            class="inline-block bg-gradient-to-r from-fc-green to-[#00a1ff] text-fc-dark font-bold px-6 py-3 rounded-lg transition hover:shadow-lg hover:shadow-fc-green/20"
+            class="inline-block bg-gradient-to-r from-fc-green to-fc-accent text-fc-dark font-bold px-6 py-3 rounded-lg transition hover:shadow-lg hover:shadow-fc-green/20"
             >Get In Touch</a
           >
         </div>
@@ -226,8 +263,8 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-fc-gray">
-      <div class="container mx-auto px-4">
+    <section id="skills" class="py-16 bg-fc-gray relative">
+      <div class="container mx-auto px-4 content-wrapper">
         <h2
           class="text-3xl md:text-4xl font-bold text-center mb-8 text-fc-green"
         >
@@ -236,10 +273,10 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <!-- Skill Card 1 -->
           <div
-            class="skill-card bg-fc-dark p-6 rounded-lg shadow-lg border border-fc-gray"
+            class="skill-card bg-fc-dark p-6 rounded-lg shadow-lg border border-fc-gray/50 relative overflow-hidden"
           >
             <div
-              class="skill-icon w-12 h-12 bg-fc-green rounded-full flex items-center justify-center mb-4"
+              class="skill-icon w-12 h-12 bg-fc-green rounded-full flex items-center justify-center mb-4 z-10"
             >
               <svg
                 class="w-6 h-6 text-fc-dark"
@@ -255,20 +292,23 @@
                 ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-2">Python</h3>
-            <p class="text-fc-light/80 mb-4">Machine Learning & Automation</p>
+            <h3 class="text-xl font-bold mb-2 z-10">Python</h3>
+            <p class="text-fc-light/80 mb-4 z-10">
+              Machine Learning & Automation
+            </p>
             <a
               href="#"
-              class="text-fc-green hover:text-[#00a1ff] flex items-center font-medium"
+              class="text-fc-green hover:text-fc-accent flex items-center font-medium z-10"
               >Learn More →</a
             >
           </div>
+
           <!-- Skill Card 2 -->
           <div
-            class="skill-card bg-fc-dark p-6 rounded-lg shadow-lg border border-fc-gray"
+            class="skill-card bg-fc-dark p-6 rounded-lg shadow-lg border border-fc-gray/50 relative overflow-hidden"
           >
             <div
-              class="skill-icon w-12 h-12 bg-fc-green rounded-full flex items-center justify-center mb-4"
+              class="skill-icon w-12 h-12 bg-fc-green rounded-full flex items-center justify-center mb-4 z-10"
             >
               <svg
                 class="w-6 h-6 text-fc-dark"
@@ -284,20 +324,21 @@
                 ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-2">JavaScript</h3>
-            <p class="text-fc-light/80 mb-4">Web Development & APIs</p>
+            <h3 class="text-xl font-bold mb-2 z-10">JavaScript</h3>
+            <p class="text-fc-light/80 mb-4 z-10">Web Development & APIs</p>
             <a
               href="#"
-              class="text-fc-green hover:text-[#00a1ff] flex items-center font-medium"
+              class="text-fc-green hover:text-fc-accent flex items-center font-medium z-10"
               >Learn More →</a
             >
           </div>
+
           <!-- Skill Card 3 -->
           <div
-            class="skill-card bg-fc-dark p-6 rounded-lg shadow-lg border border-fc-gray"
+            class="skill-card bg-fc-dark p-6 rounded-lg shadow-lg border border-fc-gray/50 relative overflow-hidden"
           >
             <div
-              class="skill-icon w-12 h-12 bg-fc-green rounded-full flex items-center justify-center mb-4"
+              class="skill-icon w-12 h-12 bg-fc-green rounded-full flex items-center justify-center mb-4 z-10"
             >
               <svg
                 class="w-6 h-6 text-fc-dark"
@@ -313,11 +354,11 @@
                 ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold mb-2">AI/ML</h3>
-            <p class="text-fc-light/80 mb-4">Neural Networks & NLP</p>
+            <h3 class="text-xl font-bold mb-2 z-10">AI/ML</h3>
+            <p class="text-fc-light/80 mb-4 z-10">Neural Networks & NLP</p>
             <a
               href="#"
-              class="text-fc-green hover:text-[#00a1ff] flex items-center font-medium"
+              class="text-fc-green hover:text-fc-accent flex items-center font-medium z-10"
               >Learn More →</a
             >
           </div>
@@ -326,8 +367,8 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16 bg-fc-dark">
-      <div class="container mx-auto px-4">
+    <section id="projects" class="py-16 bg-fc-dark relative">
+      <div class="container mx-auto px-4 content-wrapper">
         <h2
           class="text-3xl md:text-4xl font-bold text-center mb-8 text-fc-green"
         >
@@ -336,7 +377,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Project Card 1 -->
           <div
-            class="project-card bg-fc-gray p-0 rounded-lg overflow-hidden shadow-lg border border-fc-gray/50"
+            class="project-card bg-fc-gray p-0 rounded-lg overflow-hidden shadow-lg border border-fc-gray/50 relative"
           >
             <div class="fc-gradient-border h-48 overflow-hidden">
               <img
@@ -362,14 +403,15 @@
               </div>
               <a
                 href="#"
-                class="text-fc-green hover:text-[#00a1ff] flex items-center font-medium"
+                class="text-fc-green hover:text-fc-accent flex items-center font-medium"
                 >GitHub →</a
               >
             </div>
           </div>
+
           <!-- Project Card 2 -->
           <div
-            class="project-card bg-fc-gray p-0 rounded-lg overflow-hidden shadow-lg border border-fc-gray/50"
+            class="project-card bg-fc-gray p-0 rounded-lg overflow-hidden shadow-lg border border-fc-gray/50 relative"
           >
             <div class="fc-gradient-border h-48 overflow-hidden">
               <img
@@ -395,7 +437,7 @@
               </div>
               <a
                 href="#"
-                class="text-fc-green hover:text-[#00a1ff] flex items-center font-medium"
+                class="text-fc-green hover:text-fc-accent flex items-center font-medium"
                 >GitHub →</a
               >
             </div>
@@ -405,15 +447,15 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-fc-gray">
-      <div class="container mx-auto px-4">
+    <section id="contact" class="py-16 bg-fc-gray relative">
+      <div class="container mx-auto px-4 content-wrapper">
         <h2
           class="text-3xl md:text-4xl font-bold text-center mb-8 text-fc-green"
         >
           Get In Touch
         </h2>
-        <div class="max-w-md mx-auto">
-          <form class="space-y-4">
+        <div class="max-w-md mx-auto relative">
+          <form class="space-y-4 relative z-10">
             <div>
               <label for="name" class="block mb-2">Name</label>
               <input
@@ -440,7 +482,7 @@
             </div>
             <button
               type="submit"
-              class="w-full bg-gradient-to-r from-fc-green to-[#00a1ff] text-fc-dark font-bold px-6 py-3 rounded-lg transition hover:shadow-lg hover:shadow-fc-green/20"
+              class="w-full bg-gradient-to-r from-fc-green to-fc-accent text-fc-dark font-bold px-6 py-3 rounded-lg transition hover:shadow-lg hover:shadow-fc-green/20"
             >
               Send Message
             </button>
@@ -451,7 +493,7 @@
 
     <!-- Footer -->
     <footer class="py-8 bg-fc-dark border-t border-fc-gray/20">
-      <div class="container mx-auto px-4 text-center">
+      <div class="container mx-auto px-4 text-center content-wrapper">
         <div class="flex justify-center space-x-6 mb-4">
           <a href="#" class="text-fc-light/60 hover:text-fc-green transition">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -478,8 +520,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <!-- Custom JS -->
     <script>
-      // Mobile menu toggle
+      // Create floating particles
       document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("particles-container");
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          // Random size between 2px and 8px
+          const size = Math.random() * 6 + 2;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+
+          // Random position
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+
+          // Random animation duration between 10s and 30s
+          const duration = Math.random() * 20 + 10;
+          particle.style.animationDuration = `${duration}s`;
+
+          // Random delay
+          particle.style.animationDelay = `${Math.random() * 10}s`;
+
+          container.appendChild(particle);
+        }
+
+        // Mobile menu toggle
         const mobileMenuButton = document.querySelector(
           '[data-collapse-toggle="mobile-menu"]'
         );
