@@ -22,6 +22,7 @@
         font-family: "Inter", sans-serif;
         background-color: #101010;
         color: #ffffff;
+        overflow-x: hidden; /* NEW: Prevent horizontal scroll */
       }
       h1,
       h2,
@@ -29,22 +30,25 @@
       .logo {
         font-family: "Orbitron", sans-serif;
       }
-      /* NEW: Typing animation for hero */
+      /* Typing animation for hero */
       .hero-title {
         overflow: hidden;
         white-space: nowrap;
         animation: typing 1.5s steps(20, end);
+        width: 0;
       }
       .hero-subtitle {
         overflow: hidden;
         white-space: nowrap;
         animation: typing 1.8s steps(25, end) 0.5s forwards;
+        width: 0;
         opacity: 0;
       }
       .hero-tagline {
         overflow: hidden;
         white-space: nowrap;
         animation: typing 2s steps(30, end) 1s forwards;
+        width: 0;
         opacity: 0;
       }
       @keyframes typing {
@@ -57,7 +61,7 @@
           opacity: 1;
         }
       }
-      /* NEW: Card hover glow */
+      /* Card hover glow */
       .skill-card:hover,
       .project-card:hover {
         transform: translateY(-5px);
@@ -68,28 +72,56 @@
         background-color: #089b68;
         transition: all 0.3s ease;
       }
+      /* NEW: Mobile responsiveness fixes */
+      @media (max-width: 768px) {
+        .hero {
+          padding-top: 6rem;
+          padding-bottom: 4rem;
+          text-align: center;
+        }
+        .hero-content {
+          width: 100%;
+          margin-bottom: 2rem;
+        }
+        .hero-image {
+          width: 100%;
+        }
+        .hero-title {
+          font-size: 2.5rem;
+          animation: none;
+          width: 100;
+          opacity: 1;
+        }
+        .hero-subtitle,
+        .hero-tagline {
+          animation: none;
+          width: 100;
+          opacity: 1;
+          white-space: normal;
+        }
+      }
     </style>
   </head>
   <body class="bg-[#101010] text-white">
     <!-- Navigation Bar -->
     <header class="fixed w-full bg-[#101010] z-50 shadow-lg">
       <nav
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
       >
-        <div class="logo text-2xl font-bold">Modaniels</div>
-        <div class="hidden md:flex space-x-8">
-          <a href="#about" class="hover:text-[#067B51] transition">About Me</a>
+        <div class="logo text-xl md:text-2xl font-bold">Modaniels</div>
+        <div class="hidden md:flex space-x-6">
+          <a href="#about" class="hover:text-[#067B51] transition">About</a>
           <a href="#skills" class="hover:text-[#067B51] transition">Skills</a>
           <a href="#projects" class="hover:text-[#067B51] transition"
             >Projects</a
           >
           <a href="#contact" class="hover:text-[#067B51] transition">Contact</a>
         </div>
-        <!-- NEW: Fixed Flowbite mobile menu -->
+        <!-- Mobile Menu Button -->
         <button
           data-collapse-toggle="mobile-menu"
           type="button"
-          class="md:hidden"
+          class="md:hidden p-2"
         >
           <svg
             class="w-6 h-6"
@@ -110,7 +142,7 @@
       <div id="mobile-menu" class="hidden md:hidden bg-[#2A2A2A]">
         <div class="px-2 pt-2 pb-3 space-y-1">
           <a href="#about" class="block px-3 py-2 hover:text-[#067B51]"
-            >About Me</a
+            >About</a
           >
           <a href="#skills" class="block px-3 py-2 hover:text-[#067B51]"
             >Skills</a
@@ -126,41 +158,43 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero min-h-screen flex items-center pt-20">
+    <section class="hero min-h-screen flex items-center pt-16">
       <div
-        class="container mx-auto px-6 flex flex-col md:flex-row items-center"
+        class="container mx-auto px-4 flex flex-col md:flex-row items-center"
       >
-        <div class="hero-content md:w-1/2 mb-10 md:mb-0">
-          <h1 class="hero-title text-5xl md:text-6xl font-bold mb-4">
+        <div class="hero-content md:w-1/2 mb-8 md:mb-0">
+          <h1 class="hero-title text-3xl md:text-6xl font-bold mb-4">
             Modaniels
           </h1>
-          <p class="hero-subtitle text-[#B0B0B0] text-xl mb-6">
+          <p class="hero-subtitle text-[#B0B0B0] text-lg md:text-xl mb-4">
             AI Developer | Futuristic Designer
           </p>
-          <p class="hero-tagline text-2xl mb-8">
+          <p class="hero-tagline text-xl md:text-2xl mb-6">
             Building the future, one line of code at a time.
           </p>
           <a
             href="#contact"
-            class="bg-[#067B51] hover:bg-[#089B68] text-white px-6 py-3 rounded-lg transition"
+            class="inline-block bg-[#067B51] hover:bg-[#089B68] text-white px-6 py-3 rounded-lg transition"
             >Get In Touch</a
           >
         </div>
-        <div class="hero-image md:w-1/2 flex justify-center">
+        <div class="hero-image md:w-1/2 flex justify-center mt-8 md:mt-0">
           <img
-            src="https://placehold.co/500x600/2A2A2A/FFFFFF?text=Modaniels"
+            src="https://placehold.co/400x500/2A2A2A/FFFFFF?text=Modaniels"
             alt="Modaniels"
-            class="rounded-lg shadow-xl"
+            class="rounded-lg shadow-xl w-full max-w-md"
           />
         </div>
       </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-[#0F0F0F]">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12">My Skills</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <section id="skills" class="py-16 bg-[#0F0F0F]">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">
+          My Skills
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <!-- Skill Card 1 -->
           <div class="skill-card bg-[#2A2A2A] p-6 rounded-lg shadow-lg">
             <div
@@ -220,10 +254,12 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section id="projects" class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">
+          Projects
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Project Card 1 -->
           <div
             class="project-card bg-[#2A2A2A] rounded-lg overflow-hidden shadow-lg"
@@ -258,17 +294,19 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-[#0F0F0F]">
-      <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12">Get In Touch</h2>
-        <div class="max-w-2xl mx-auto">
-          <form class="space-y-6">
+    <section id="contact" class="py-16 bg-[#0F0F0F]">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">
+          Get In Touch
+        </h2>
+        <div class="max-w-md mx-auto">
+          <form class="space-y-4">
             <div>
               <label for="name" class="block mb-2">Name</label>
               <input
                 type="text"
                 id="name"
-                class="w-full bg-[#2A2A2A] border border-[#292929] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#067B51]"
+                class="w-full bg-[#2A2A2A] border border-[#292929] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#067B51]"
               />
             </div>
             <div>
@@ -276,7 +314,7 @@
               <input
                 type="email"
                 id="email"
-                class="w-full bg-[#2A2A2A] border border-[#292929] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#067B51]"
+                class="w-full bg-[#2A2A2A] border border-[#292929] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#067B51]"
               />
             </div>
             <div>
@@ -284,7 +322,7 @@
               <textarea
                 id="message"
                 rows="4"
-                class="w-full bg-[#2A2A2A] border border-[#292929] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#067B51]"
+                class="w-full bg-[#2A2A2A] border border-[#292929] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#067B51]"
               ></textarea>
             </div>
             <button
@@ -300,8 +338,8 @@
 
     <!-- Footer -->
     <footer class="py-8 bg-[#101010] border-t border-[#292929]">
-      <div class="container mx-auto px-6 text-center">
-        <div class="flex justify-center space-x-6 mb-6">
+      <div class="container mx-auto px-4 text-center">
+        <div class="flex justify-center space-x-6 mb-4">
           <a href="#" class="text-[#B0B0B0] hover:text-[#067B51]">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -317,7 +355,9 @@
             </svg>
           </a>
         </div>
-        <p class="text-[#B0B0B0]">© 2024 Modaniels. All rights reserved.</p>
+        <p class="text-[#B0B0B0] text-sm">
+          © 2024 Modaniels. All rights reserved.
+        </p>
       </div>
     </footer>
 
@@ -325,7 +365,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <!-- Custom JS -->
     <script>
-      // NEW: Mobile menu toggle fix
+      // Mobile menu toggle
       document.addEventListener("DOMContentLoaded", function () {
         const mobileMenuButton = document.querySelector(
           '[data-collapse-toggle="mobile-menu"]'
