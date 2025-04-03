@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modaniels | Project Portfolio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'fc-dark': '#0a0a0a',
+            'fc-gray': '#1a1a1a',
+            'fc-green': '#00ff87',
+            'fc-light': '#e8e8e8',
+            'fc-accent': '#00a1ff',
+          },
+          fontFamily: {
+            'orbitron': ['Orbitron', 'sans-serif'],
+            'inter': ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <!-- Flowbite CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0a0a;
+      color: #e8e8e8;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+    }
+    
+    /* Floating particles background */
+    .particles-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      background-color: rgba(0, 255, 135, 0.15);
+      border-radius: 2px;
+      animation: float linear infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+      }
+    }
+    
+    /* FC24-style gradient borders */
+    .fc-gradient-border {
+      position: relative;
+      z-index: 1;
+    }
+    .fc-gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(45deg, #00ff87, #00a1ff);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Card hover effects */
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 255, 135, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    /* Active filter button */
+    .filter-btn.active {
+      background: linear-gradient(135deg, #00ff87, #00a1ff);
+      color: #0a0a0a;
+      font-weight: 600;
+    }
+    
+    /* Content wrapper to bring elements above particles */
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* Tag styles */
+    .project-tag {
+      background-color: #1a1a1a;
+      border: 1px solid #00ff87;
+      color: #00ff87;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .filter-container {
+        flex-direction: column;
+      }
+      .search-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="bg-fc-dark text-fc-light">
+  <!-- Floating particles background -->
+  <div class="particles-container" id="particles-container"></div>
+  
+  <!-- Navigation Bar -->
+  <header class="fixed w-full bg-fc-dark/90 backdrop-blur-sm z-50 shadow-lg">
+    <nav class="container mx-auto px-4 py-3 flex justify-between items-center content-wrapper">
+      <a href="index.html" class="logo text-xl md:text-2xl font-bold text-fc-green">Modaniels</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="aboutme.html" class="hover:text-fc-green transition">About</a>
+        <a href="index.html#skills" class="hover:text-fc-green transition">Skills</a>
+        <a href="projects.html" class="text-fc-green transition">Projects</a>
+        <a href="index.html#contact" class="hover:text-fc-green transition">Contact</a>
+      </div>
+      <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden p-2 text-fc-green">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden bg-fc-gray">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="aboutme.html" class="block px-3 py-2 hover:text-fc-green">About</a>
+        <a href="index.html#skills" class="block px-3 py-2 hover:text-fc-green">Skills</a>
+        <a href="projects.html" class="block px-3 py-2 text-fc-green">Projects</a>
+        <a href="index.html#contact" class="block px-3 py-2 hover:text-fc-green">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Projects Header -->
+  <section class="pt-32 pb-16 content-wrapper">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-fc-green">Project Portfolio</h1>
+      <p class="text-xl md:text-2xl mb-8 max-w-3xl">
+        A curated collection of my technical creations, from AI solutions to game engines
+      </p>
+      
+      <!-- Filter Controls -->
+      <div class="mb-12">
+        <div class="filter-container flex flex-wrap gap-4 items-center mb-6">
+          <div class="search-box relative flex-grow max-w-md">
+            <input type="text" id="project-search" placeholder="Search projects..." 
+                   class="w-full bg-fc-gray border border-fc-gray/50 rounded-lg px-4 py-3 pl-10 focus:outline-none focus:ring-2 focus:ring-fc-green">
+            <svg class="absolute left-3 top-3.5 h-5 w-5 text-fc-light/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button class="filter-btn px-4 py-2 rounded-lg border border-fc-gray/50 hover:bg-fc-gray/50 transition active" data-filter="all">All Projects</button>
+            <button class="filter-btn px-4 py-2 rounded-lg border border-fc-gray/50 hover:bg-fc-gray/50 transition" data-filter="python">Python</button>
+            <button class="filter-btn px-4 py-2 rounded-lg border border-fc-gray/50 hover:bg-fc-gray/50 transition" data-filter="ai">AI Solutions</button>
+            <button class="filter-btn px-4 py-2 rounded-lg border border-fc-gray/50 hover:bg-fc-gray/50 transition" data-filter="fintech">Fintech/Blockchain</button>
+            <button class="filter-btn px-4 py-2 rounded-lg border border-fc-gray/50 hover:bg-fc-gray/50 transition" data-filter="game">Game Dev</button>
+            <button class="filter-btn px-4 py-2 rounded-lg border border-fc-gray/50 hover:bg-fc-gray/50 transition" data-filter="design">Design</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Projects Grid -->
+      <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- SmartSched -->
+        <div class="project-card bg-fc-gray p-6 rounded-lg border border-fc-gray/50 transition-all duration-300" data-tags="python ai">
+          <div class="fc-gradient-border rounded-lg overflow-hidden mb-4">
+            <img src="https://placehold.co/600x400/1a1a1a/00ff87?text=SmartSched" alt="SmartSched" class="w-full h-auto">
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-fc-light">SmartSched</h3>
+            <span class="project-tag text-xs px-2 py-1 rounded">AI</span>
+          </div>
+          <p class="text-fc-light/80 mb-4">AI-powered university scheduling system using genetic algorithms to optimize timetables and resource allocation.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.92 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57C20.565 21.795 24 17.31 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              Code
+            </a>
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 9V6l-7 7 7 7v-3l-4-4 4-4zm4 4l4-4v3h6v2h-6v3l-4-4z"/>
+              </svg>
+              Demo
+            </a>
+          </div>
+        </div>
+        
+        <!-- C++ Game Engine -->
+        <div class="project-card bg-fc-gray p-6 rounded-lg border border-fc-gray/50 transition-all duration-300" data-tags="game">
+          <div class="fc-gradient-border rounded-lg overflow-hidden mb-4">
+            <img src="https://placehold.co/600x400/1a1a1a/00ff87?text=C%2B%2B+Engine" alt="C++ Game Engine" class="w-full h-auto">
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-fc-light">C++ Game Engine</h3>
+            <span class="project-tag text-xs px-2 py-1 rounded">Game Dev</span>
+          </div>
+          <p class="text-fc-light/80 mb-4">Custom high-performance game engine with real-time rendering, physics, and a scene editor built from scratch.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.92 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57C20.565 21.795 24 17.31 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              Code
+            </a>
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 9V6l-7 7 7 7v-3l-4-4 4-4zm4 4l4-4v3h6v2h-6v3l-4-4z"/>
+              </svg>
+              Demo
+            </a>
+          </div>
+        </div>
+        
+        <!-- HFlow Wallet -->
+        <div class="project-card bg-fc-gray p-6 rounded-lg border border-fc-gray/50 transition-all duration-300" data-tags="fintech">
+          <div class="fc-gradient-border rounded-lg overflow-hidden mb-4">
+            <img src="https://placehold.co/600x400/1a1a1a/00ff87?text=HFlow+Wallet" alt="HFlow Wallet" class="w-full h-auto">
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-fc-light">HFlow Wallet</h3>
+            <span class="project-tag text-xs px-2 py-1 rounded">Fintech</span>
+          </div>
+          <p class="text-fc-light/80 mb-4">USSD-based Hedera Hashgraph wallet bringing decentralized finance to feature phones in emerging markets.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.92 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57C20.565 21.795 24 17.31 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              Code
+            </a>
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 9V6l-7 7 7 7v-3l-4-4 4-4zm4 4l4-4v3h6v2h-6v3l-4-4z"/>
+              </svg>
+              Demo
+            </a>
+          </div>
+        </div>
+        
+        <!-- File Automation -->
+        <div class="project-card bg-fc-gray p-6 rounded-lg border border-fc-gray/50 transition-all duration-300" data-tags="python">
+          <div class="fc-gradient-border rounded-lg overflow-hidden mb-4">
+            <img src="https://placehold.co/600x400/1a1a1a/00ff87?text=File+Automation" alt="File Automation" class="w-full h-auto">
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-fc-light">File Automation</h3>
+            <span class="project-tag text-xs px-2 py-1 rounded">Python</span>
+          </div>
+          <p class="text-fc-light/80 mb-4">Advanced file management system that automatically organizes, renames, and backs up files based on custom rules.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.92 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57C20.565 21.795 24 17.31 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+        
+        <!-- ICBS Magazine -->
+        <div class="project-card bg-fc-gray p-6 rounded-lg border border-fc-gray/50 transition-all duration-300" data-tags="design">
+          <div class="fc-gradient-border rounded-lg overflow-hidden mb-4">
+            <img src="https://placehold.co/600x400/1a1a1a/00ff87?text=ICBS+Magazine" alt="ICBS Magazine" class="w-full h-auto">
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-fc-light">ICBS Magazine</h3>
+            <span class="project-tag text-xs px-2 py-1 rounded">Design</span>
+          </div>
+          <p class="text-fc-light/80 mb-4">Modern business magazine featuring innovative layouts, typography, and visual storytelling for the digital age.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 9V6l-7 7 7 7v-3l-4-4 4-4zm4 4l4-4v3h6v2h-6v3l-4-4z"/>
+              </svg>
+              View
+            </a>
+          </div>
+        </div>
+        
+        <!-- Web Design Portfolio -->
+        <div class="project-card bg-fc-gray p-6 rounded-lg border border-fc-gray/50 transition-all duration-300" data-tags="design">
+          <div class="fc-gradient-border rounded-lg overflow-hidden mb-4">
+            <img src="https://placehold.co/600x400/1a1a1a/00ff87?text=Web+Designs" alt="Web Design Portfolio" class="w-full h-auto">
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-fc-light">Web Design Portfolio</h3>
+            <span class="project-tag text-xs px-2 py-1 rounded">Design</span>
+          </div>
+          <p class="text-fc-light/80 mb-4">Collection of responsive UI/UX designs with modern aesthetics and interactive prototypes.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 9V6l-7 7 7 7v-3l-4-4 4-4zm4 4l4-4v3h6v2h-6v3l-4-4z"/>
+              </svg>
+              View
+            </a>
+          </div>
+        </div>
+        
+        <!-- AI Research Tool -->
+        <div class="project-card bg-fc-gray p-6 rounded-lg border border-fc-gray/50 transition-all duration-300" data-tags="python ai">
+          <div class="fc-gradient-border rounded-lg overflow-hidden mb-4">
+            <img src="https://placehold.co/600x400/1a1a1a/00ff87?text=AI+Research" alt="AI Research Tool" class="w-full h-auto">
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-xl font-bold text-fc-light">AI Research Tool</h3>
+            <span class="project-tag text-xs px-2 py-1 rounded">AI</span>
+          </div>
+          <p class="text-fc-light/80 mb-4">Natural language processing tool that summarizes and connects research papers using machine learning.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.92 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57C20.565 21.795 24 17.31 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-fc-dark py-8 border-t border-fc-gray/50">
+      <div class="container mx-auto px-4 content-wrapper">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="logo text-xl font-bold text-fc-green mb-4 md:mb-0">Modaniels</div>
+          <div class="flex space-x-6">
+            <a href="#" class="text-fc-light hover:text-fc-green transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-fc-light hover:text-fc-green transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-fc-light hover:text-fc-green transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="mt-6 text-center text-fc-light/70 text-sm">
+          <p>© 2023 Modaniels. All systems operational.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+      // Create floating particles
+      document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("particles-container");
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          // Random size between 2px and 8px
+          const size = Math.random() * 6 + 2;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+
+          // Random position
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+
+          // Random animation duration between 10s and 30s
+          const duration = Math.random() * 20 + 10;
+          particle.style.animationDuration = `${duration}s`;
+
+          // Random delay
+          particle.style.animationDelay = `${Math.random() * 10}s`;
+
+          container.appendChild(particle);
+        }
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector(
+          '[data-collapse-toggle="mobile-menu"]'
+        );
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+      });
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+          // Close mobile menu after click
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.add("hidden");
+        });
+      });
+    </script>
+  </body>
+</html>
