@@ -15,7 +15,7 @@
             'fc-gray': '#1a1a1a',
             'fc-green': '#00ff87',
             'fc-light': '#e8e8e8',
-            'fc-accent': '#00a1ff',
+            'fc-accent': '#00d1ff', // Updated blue color
           },
           fontFamily: {
             'orbitron': ['Orbitron', 'sans-serif'],
@@ -67,7 +67,7 @@
       }
     }
     
-    /* FC24-style gradient borders */
+    /* FC24-style gradient borders - updated with new blue */
     .fc-gradient-border {
       position: relative;
       z-index: 1;
@@ -78,7 +78,7 @@
       inset: 0;
       border-radius: inherit;
       padding: 2px;
-      background: linear-gradient(45deg, #00ff87, #00a1ff);
+      background: linear-gradient(45deg, #00ff87, #00d1ff); /* Updated blue */
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
@@ -93,9 +93,9 @@
       transition: all 0.3s ease;
     }
     
-    /* Active filter button */
+    /* Active filter button - updated with new blue */
     .filter-btn.active {
-      background: linear-gradient(135deg, #00ff87, #00a1ff);
+      background: linear-gradient(135deg, #00ff87, #00d1ff); /* Updated blue */
       color: #0a0a0a;
       font-weight: 600;
     }
@@ -111,6 +111,19 @@
       background-color: #1a1a1a;
       border: 1px solid #00ff87;
       color: #00ff87;
+    }
+    
+    /* Tech stack badges - updated with new blue */
+    .tech-badge {
+      display: inline-block;
+      background-color: #1a1a1a;
+      color: #00d1ff; /* Updated blue */
+      border: 1px solid #00d1ff; /* Updated blue */
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 0.75rem;
+      margin-right: 4px;
+      margin-bottom: 4px;
     }
     
     /* Mobile responsiveness */
@@ -162,6 +175,31 @@
         A curated collection of my technical creations, from AI solutions to game engines
       </p>
       
+      <!-- Tech Stack Section -->
+      <div class="mb-12 bg-fc-gray p-6 rounded-lg border border-fc-gray/50">
+        <h2 class="text-2xl font-bold mb-4 text-fc-accent">Tech Stack</h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">C++</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">TypeScript</span>
+          <span class="tech-badge">React</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">TensorFlow</span>
+          <span class="tech-badge">PyTorch</span>
+          <span class="tech-badge">OpenGL</span>
+          <span class="tech-badge">Vulkan</span>
+          <span class="tech-badge">Hedera Hashgraph</span>
+          <span class="tech-badge">Solidity</span>
+          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">Kubernetes</span>
+          <span class="tech-badge">AWS</span>
+          <span class="tech-badge">Tailwind CSS</span>
+          <span class="tech-badge">Figma</span>
+          <span class="tech-badge">Adobe Creative Suite</span>
+        </div>
+      </div>
+      
       <!-- Filter Controls -->
       <div class="mb-12">
         <div class="filter-container flex flex-wrap gap-4 items-center mb-6">
@@ -196,6 +234,12 @@
             <span class="project-tag text-xs px-2 py-1 rounded">AI</span>
           </div>
           <p class="text-fc-light/80 mb-4">AI-powered university scheduling system using genetic algorithms to optimize timetables and resource allocation.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Genetic Algorithms</span>
+            <span class="tech-badge">Django</span>
+            <span class="tech-badge">PostgreSQL</span>
+          </div>
           <div class="flex space-x-4">
             <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
               <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
@@ -222,6 +266,13 @@
             <span class="project-tag text-xs px-2 py-1 rounded">Game Dev</span>
           </div>
           <p class="text-fc-light/80 mb-4">Custom high-performance game engine with real-time rendering, physics, and a scene editor built from scratch.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">C++17</span>
+            <span class="tech-badge">OpenGL</span>
+            <span class="tech-badge">Vulkan</span>
+            <span class="tech-badge">GLFW</span>
+            <span class="tech-badge">Bullet Physics</span>
+          </div>
           <div class="flex space-x-4">
             <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
               <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
@@ -248,6 +299,13 @@
             <span class="project-tag text-xs px-2 py-1 rounded">Fintech</span>
           </div>
           <p class="text-fc-light/80 mb-4">USSD-based Hedera Hashgraph wallet bringing decentralized finance to feature phones in emerging markets.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Hedera Hashgraph</span>
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">Express</span>
+            <span class="tech-badge">USSD</span>
+            <span class="tech-badge">AWS Lambda</span>
+          </div>
           <div class="flex space-x-4">
             <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
               <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
@@ -274,6 +332,12 @@
             <span class="project-tag text-xs px-2 py-1 rounded">Python</span>
           </div>
           <p class="text-fc-light/80 mb-4">Advanced file management system that automatically organizes, renames, and backs up files based on custom rules.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Watchdog</span>
+            <span class="tech-badge">Regular Expressions</span>
+            <span class="tech-badge">CLI</span>
+          </div>
           <div class="flex space-x-4">
             <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
               <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
@@ -294,6 +358,12 @@
             <span class="project-tag text-xs px-2 py-1 rounded">Design</span>
           </div>
           <p class="text-fc-light/80 mb-4">Modern business magazine featuring innovative layouts, typography, and visual storytelling for the digital age.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Adobe InDesign</span>
+            <span class="tech-badge">Photoshop</span>
+            <span class="tech-badge">Illustrator</span>
+            <span class="tech-badge">Typography</span>
+          </div>
           <div class="flex space-x-4">
             <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
               <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
@@ -314,6 +384,12 @@
             <span class="project-tag text-xs px-2 py-1 rounded">Design</span>
           </div>
           <p class="text-fc-light/80 mb-4">Collection of responsive UI/UX designs with modern aesthetics and interactive prototypes.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Figma</span>
+            <span class="tech-badge">Adobe XD</span>
+            <span class="tech-badge">UI/UX</span>
+            <span class="tech-badge">Prototyping</span>
+          </div>
           <div class="flex space-x-4">
             <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
               <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
@@ -334,6 +410,13 @@
             <span class="project-tag text-xs px-2 py-1 rounded">AI</span>
           </div>
           <p class="text-fc-light/80 mb-4">Natural language processing tool that summarizes and connects research papers using machine learning.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">PyTorch</span>
+            <span class="tech-badge">NLP</span>
+            <span class="tech-badge">Transformers</span>
+            <span class="tech-badge">Flask</span>
+          </div>
           <div class="flex space-x-4">
             <a href="#" class="text-fc-green hover:text-fc-accent flex items-center text-sm">
               <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
@@ -416,6 +499,46 @@
         mobileMenuButton.addEventListener("click", function () {
           mobileMenu.classList.toggle("hidden");
         });
+
+        // Project filtering functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const searchInput = document.getElementById('project-search');
+
+        filterButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            // Update active state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const filterValue = button.dataset.filter;
+            filterProjects(filterValue);
+          });
+        });
+
+        searchInput.addEventListener('input', () => {
+          const searchTerm = searchInput.value.toLowerCase();
+          filterProjects('all', searchTerm);
+        });
+
+        function filterProjects(filter, searchTerm = '') {
+          projectCards.forEach(card => {
+            const tags = card.dataset.tags;
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const description = card.querySelector('p').textContent.toLowerCase();
+            
+            const matchesFilter = filter === 'all' || tags.includes(filter);
+            const matchesSearch = searchTerm === '' || 
+              title.includes(searchTerm) || 
+              description.includes(searchTerm);
+            
+            if (matchesFilter && matchesSearch) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
       });
 
       // Smooth scrolling
