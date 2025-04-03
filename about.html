@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Modaniels | C++ & Python Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "fc-dark": "#0a0a0a",
+              "fc-gray": "#1a1a1a",
+              "fc-green": "#00ff87",
+              "fc-light": "#e8e8e8",
+              "fc-accent": "#00a1ff",
+            },
+            fontFamily: {
+              orbitron: ["Orbitron", "sans-serif"],
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Flowbite CDN -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0a0a0a;
+        color: #e8e8e8;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      .logo {
+        font-family: "Orbitron", sans-serif;
+        font-weight: 700;
+      }
+
+      /* Floating particles background */
+      .particles-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .particle {
+        position: absolute;
+        background-color: rgba(0, 255, 135, 0.15);
+        border-radius: 2px;
+        animation: float linear infinite;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+        }
+      }
+
+      /* FC24-style gradient borders */
+      .fc-gradient-border {
+        position: relative;
+        z-index: 1;
+      }
+      .fc-gradient-border::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 2px;
+        background: linear-gradient(45deg, #00ff87, #00a1ff);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Typewriter effect */
+      .typewriter {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(40, end) forwards;
+        width: 0;
+      }
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      /* Card hover effects */
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 255, 135, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      /* Content wrapper to bring elements above particles */
+      .content-wrapper {
+        position: relative;
+        z-index: 10;
+      }
+
+      /* Glowing text */
+      .glow {
+        text-shadow: 0 0 10px rgba(0, 255, 135, 0.7);
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        .hero {
+          padding-top: 6rem;
+          padding-bottom: 4rem;
+        }
+        .typewriter {
+          white-space: normal;
+          animation: none;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-fc-dark text-fc-light">
+    <!-- Floating particles background -->
+    <div class="particles-container" id="particles-container"></div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed w-full bg-fc-dark/90 backdrop-blur-sm z-50 shadow-lg">
+      <nav
+        class="container mx-auto px-4 py-3 flex justify-between items-center content-wrapper"
+      >
+        <a
+          href="index.html"
+          class="logo text-xl md:text-2xl font-bold text-fc-green"
+        >
+          Modaniels
+        </a>
+        <div class="hidden md:flex space-x-6">
+          <a href="aboutme.html" class="text-fc-green transition">About</a>
+          <a href="index.html#skills" class="hover:text-fc-green transition"
+            >Skills</a
+          >
+          <a href="index.html#projects" class="hover:text-fc-green transition"
+            >Projects</a
+          >
+          <a href="index.html#contact" class="hover:text-fc-green transition"
+            >Contact</a
+          >
+        </div>
+        <button
+          data-collapse-toggle="mobile-menu"
+          type="button"
+          class="md:hidden p-2 text-fc-green"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-fc-gray">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="aboutme.html" class="block px-3 py-2 text-fc-green">About</a>
+          <a
+            href="index.html#skills"
+            class="block px-3 py-2 hover:text-fc-green"
+            >Skills</a
+          >
+          <a
+            href="index.html#projects"
+            class="block px-3 py-2 hover:text-fc-green"
+            >Projects</a
+          >
+          <a
+            href="index.html#contact"
+            class="block px-3 py-2 hover:text-fc-green"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero min-h-screen flex items-center pt-16">
+      <div class="container mx-auto px-4 content-wrapper">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-3xl md:text-5xl font-bold mb-6 text-fc-green glow">
+            <span class="typewriter">Coffee → Code → Repeat</span>
+          </h1>
+          <div class="fc-gradient-border rounded-xl p-1 mb-8">
+            <img
+              src="https://placehold.co/800x500/1a1a1a/00ff87?text=Debugging+My+Life"
+              alt="Modaniels at work"
+              class="w-full h-auto rounded-lg"
+            />
+          </div>
+          <p class="text-xl md:text-2xl mb-8 text-fc-light/90">
+            Here's the <span class="text-fc-green">source code</span> of my life
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section class="py-16 bg-fc-gray relative">
+      <div class="container mx-auto px-4 content-wrapper">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex flex-col md:flex-row gap-8 items-center mb-16">
+            <div class="md:w-1/3">
+              <div class="fc-gradient-border rounded-full overflow-hidden p-1">
+                <img
+                  src="https://placehold.co/400x400/1a1a1a/00ff87?text=MODANIELS"
+                  alt="Modaniels"
+                  class="w-full h-auto rounded-full"
+                />
+              </div>
+            </div>
+            <div class="md:w-2/3">
+              <h2 class="text-3xl md:text-4xl font-bold mb-6 text-fc-green">
+                The
+                <span class="underline decoration-fc-accent">Compiled</span>
+                Version
+              </h2>
+              <div class="space-y-4 text-fc-light/90">
+                <p>
+                  <span class="text-fc-green">>></span> Currently compiling a
+                  Bachelor of Science in Computer Science at JKUAT (expected
+                  runtime: 2027)
+                </p>
+                <p>
+                  <span class="text-fc-green">>></span> Co-founder & CTO at
+                  <span class="text-fc-accent">Modexia Tech</span> - where we
+                  turn caffeine into code and ideas into products
+                </p>
+                <p>
+                  <span class="text-fc-green">>></span> Board Member & Director
+                  at
+                  <span class="text-fc-accent">Esals Ventures Limited</span> -
+                  making strategic moves in the business world
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <div
+              class="card bg-fc-dark p-8 rounded-lg border border-fc-gray/50"
+            >
+              <h3
+                class="text-2xl font-bold mb-4 text-fc-green flex items-center"
+              >
+                <svg
+                  class="w-6 h-6 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+                Current Stack
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-fc-green rounded-full mr-3"></span>
+                  <span>C++ for when I need speed</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-fc-green rounded-full mr-3"></span>
+                  <span>Python for AI/ML magic</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-fc-green rounded-full mr-3"></span>
+                  <span>JavaScript for web alchemy</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-fc-green rounded-full mr-3"></span>
+                  <span>Shell scripting for automation</span>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="card bg-fc-dark p-8 rounded-lg border border-fc-gray/50"
+            >
+              <h3
+                class="text-2xl font-bold mb-4 text-fc-green flex items-center"
+              >
+                <svg
+                  class="w-6 h-6 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                When I'm Not Coding
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-fc-accent rounded-full mr-3"></span>
+                  <span>Building startups that solve real problems</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-fc-accent rounded-full mr-3"></span>
+                  <span>Exploring new tech frontiers</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-fc-accent rounded-full mr-3"></span>
+                  <span>Mentoring aspiring developers</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="w-2 h-2 bg-fc-accent rounded-full mr-3"></span>
+                  <span>Probably debugging my life</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            class="card bg-fc-dark p-8 rounded-lg border border-fc-gray/50 mb-16"
+          >
+            <h3 class="text-2xl font-bold mb-6 text-center text-fc-green">
+              My <span class="underline decoration-fc-accent">README</span>
+            </h3>
+            <div class="space-y-6 text-fc-light/90">
+              <p>
+                I'm currently pursuing a Bachelor of Science in Computer Science
+                at JKUAT, turning coffee and code into innovative tech
+                solutions. By day, I'm the Co-founder of Modexia Tech, where we
+                push boundaries in software and AI. By night, I'm a Board Member
+                & Director at Esals Ventures Limited, making strategic moves in
+                the business world.
+              </p>
+              <p>
+                When I'm not busy debugging my life or a program, I'm working on
+                groundbreaking projects—whether it's building AI-powered tools,
+                revolutionizing fintech with micropayments, or creating game
+                engines just for fun. My world revolves around startups,
+                technology, and making ideas come to life.
+              </p>
+              <p>
+                I believe the best code is written with passion, the best
+                solutions come from understanding real problems, and the best
+                coffee is consumed during late-night coding sessions.
+              </p>
+              <div class="text-center mt-8">
+                <a
+                  href="index.html#contact"
+                  class="inline-block bg-gradient-to-r from-fc-green to-fc-accent text-fc-dark font-bold px-6 py-3 rounded-lg transition hover:shadow-lg hover:shadow-fc-green/20"
+                >
+                  Let's Build Something
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <h3 class="text-2xl font-bold mb-6 text-fc-green">
+              Current
+              <span class="underline decoration-fc-accent">Processes</span>
+              Running
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="bg-fc-dark p-4 rounded-lg border border-fc-gray/50">
+                <div class="text-3xl font-bold text-fc-green mb-2">100%</div>
+                <div class="text-sm">Caffeine</div>
+              </div>
+              <div class="bg-fc-dark p-4 rounded-lg border border-fc-gray/50">
+                <div class="text-3xl font-bold text-fc-green mb-2">∞</div>
+                <div class="text-sm">Ideas</div>
+              </div>
+              <div class="bg-fc-dark p-4 rounded-lg border border-fc-gray/50">
+                <div class="text-3xl font-bold text-fc-green mb-2">24/7</div>
+                <div class="text-sm">Learning</div>
+              </div>
+              <div class="bg-fc-dark p-4 rounded-lg border border-fc-gray/50">
+                <div class="text-3xl font-bold text-fc-green mb-2">42</div>
+                <div class="text-sm">Meaning</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-fc-dark py-8 border-t border-fc-gray/50">
+      <div class="container mx-auto px-4 content-wrapper">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="logo text-xl font-bold text-fc-green mb-4 md:mb-0">
+            Modaniels
+          </div>
+          <div class="flex space-x-6">
+            <a href="#" class="text-fc-light hover:text-fc-green transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="text-fc-light hover:text-fc-green transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"
+                />
+              </svg>
+            </a>
+            <a href="#" class="text-fc-light hover:text-fc-green transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="mt-6 text-center text-fc-light/70 text-sm">
+          <p>© 2023 Modaniels. All systems operational.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+      // Create floating particles
+      document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("particles-container");
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          // Random size between 2px and 8px
+          const size = Math.random() * 6 + 2;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+
+          // Random position
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+
+          // Random animation duration between 10s and 30s
+          const duration = Math.random() * 20 + 10;
+          particle.style.animationDuration = `${duration}s`;
+
+          // Random delay
+          particle.style.animationDelay = `${Math.random() * 10}s`;
+
+          container.appendChild(particle);
+        }
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector(
+          '[data-collapse-toggle="mobile-menu"]'
+        );
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+      });
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+          // Close mobile menu after click
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.add("hidden");
+        });
+      });
+    </script>
+  </body>
+</html>
